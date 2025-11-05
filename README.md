@@ -1,38 +1,39 @@
-E-Commerce Hirawr (Laravel)
+Baik, Faisal. Reponya isinya Laravel standar, jadi README lamanya cuma “About Laravel.” Kurang membantu siapa pun selain orang yang suka klik-klik. Ini README baru yang rapi, siap kamu tempel di repo itu. Sudah disusun supaya cocok dengan pola proyek Laravel modern (Vite, Tailwind, env, migrate/seed, artisan, dsb). Silakan copy-paste ke `README.md`.
+
+---
+
+# E-Commerce Hirawr (Laravel)
 
 Proyek e-commerce berbasis Laravel untuk katalog produk, keranjang, checkout, dan manajemen pesanan. Dirancang agar mudah dijalankan secara lokal dan siap dikembangkan menjadi aplikasi produksi.
 
-🔧 Tech Stack
+## 🔧 Tech Stack
 
-Backend: Laravel (PHP 8.2+)
+* **Backend:** Laravel (PHP 8.2+)
+* **Frontend:** Blade + Vite + Tailwind CSS
+* **Database:** MySQL/MariaDB (atau SQLite untuk dev cepat)
+* **Build tools:** Vite, NPM
+* **Auth:** Laravel Breeze/Fortify/Default Auth (sesuaikan dengan yang terpasang)
 
-Frontend: Blade + Vite + Tailwind CSS
+> Catatan: pastikan versi PHP, Composer, Node sesuai dengan environment kamu.
 
-Database: MySQL/MariaDB (atau SQLite untuk dev cepat)
+---
 
-Build tools: Vite, NPM
+## 🚀 Fitur (ringkas)
 
-Auth: Laravel Breeze/Fortify/Default Auth (sesuaikan dengan yang terpasang)
+* Katalog produk (listing, detail, pencarian dasar)
+* Keranjang belanja
+* Checkout dan pembuatan pesanan
+* Manajemen akun pengguna (login/registrasi)
+* Panel admin dasar untuk kelola produk & pesanan (jika modul admin tersedia)
+* Upload gambar produk dengan storage Laravel
 
-Catatan: pastikan versi PHP, Composer, Node sesuai dengan environment kamu.
+> Jika repo kamu belum memiliki semua fitur di atas, gunakan daftar ini sebagai target pengembangan. Hapus yang belum ada agar README tetap jujur.
 
-🚀 Fitur (ringkas)
+---
 
-Katalog produk (listing, detail, pencarian dasar)
+## 🗂️ Struktur Direktori Penting
 
-Keranjang belanja
-
-Checkout dan pembuatan pesanan
-
-Manajemen akun pengguna (login/registrasi)
-
-Panel admin dasar untuk kelola produk & pesanan (jika modul admin tersedia)
-
-Upload gambar produk dengan storage Laravel
-
-Jika repo kamu belum memiliki semua fitur di atas, gunakan daftar ini sebagai target pengembangan. Hapus yang belum ada agar README tetap jujur.
-
-🗂️ Struktur Direktori Penting
+```
 app/
  ├─ Http/Controllers/       # Controller Web & Admin
  ├─ Models/                 # Eloquent Models (Product, Order, dll)
@@ -48,21 +49,31 @@ resources/
 routes/
  ├─ web.php                 # Route web
  └─ api.php                 # Route API bila ada
+```
 
-🧑‍💻 Menjalankan Secara Lokal
-1) Clone & install dependencies
+---
+
+## 🧑‍💻 Menjalankan Secara Lokal
+
+### 1) Clone & install dependencies
+
+```bash
 git clone https://github.com/iceguya/E-Commerce-Hirawr.git
 cd E-Commerce-Hirawr
 composer install
 npm install
+```
 
-2) Environment
+### 2) Environment
+
+```bash
 cp .env.example .env
 php artisan key:generate
+```
 
+Atur koneksi database di `.env`:
 
-Atur koneksi database di .env:
-
+```env
 APP_NAME="E-Commerce Hirawr"
 APP_ENV=local
 APP_KEY=base64:... # otomatis diisi
@@ -78,35 +89,46 @@ DB_PASSWORD=yourpassword
 # Opsional: jika pakai SQLite untuk cepat
 # DB_CONNECTION=sqlite
 # (buat file database/database.sqlite dan ubah config/database.php bila perlu)
+```
 
-3) Database: migrate & seed
+### 3) Database: migrate & seed
+
+```bash
 php artisan migrate
 php artisan db:seed
+```
 
+> Jika ada seeder admin, akan dibuat akun admin. Cek bagian **Akun Default (Dev)** di bawah.
 
-Jika ada seeder admin, akan dibuat akun admin. Cek bagian Akun Default (Dev) di bawah.
+### 4) Storage link (untuk upload gambar)
 
-4) Storage link (untuk upload gambar)
+```bash
 php artisan storage:link
+```
 
-5) Jalankan server & bundler
+### 5) Jalankan server & bundler
 
 Di terminal 1:
 
+```bash
 php artisan serve
-
+```
 
 Di terminal 2:
 
+```bash
 npm run dev
+```
 
+Akses di: `http://127.0.0.1:8000`
 
-Akses di: http://127.0.0.1:8000
+---
 
-👤 Akun Default (Dev)
+## 👤 Akun Default (Dev)
 
 Jika seeder menambahkan user/admin, gunakan kredensial berikut (sesuaikan dengan seeder kamu):
 
+```
 Admin
 Email    : admin@example.com
 Password : password
@@ -114,7 +136,27 @@ Password : password
 User
 Email    : user@example.com
 Password : password
+```
+
+> Jika password tidak cocok, cek `database/seeders/*Seeder.php` untuk melihat nilai yang di-hash, lalu set ulang sesuai kebutuhan:
+> `php artisan tinker` → `bcrypt('password-baru')`
+
+---
+
+## 📦 Deployment Singkat
+
+* `composer install --no-dev --optimize-autoloader`
+* `php artisan config:cache && php artisan route:cache && php artisan view:cache`
+* `npm run build`
+* Migrasi DB: `php artisan migrate --force`
+* Atur `APP_URL`, storage permission, queue/cron bila diperlukan.
+
+---
+
+## 📄 Lisensi
+
+MIT (atau sesuai yang kamu pilih). Tambahkan file `LICENSE` jika belum ada.
+
+---
 
 
-Jika password tidak cocok, cek database/seeders/*Seeder.php untuk melihat nilai yang di-hash, lalu set ulang sesuai kebutuhan:
-php artisan tinker → bcrypt('password-baru')
