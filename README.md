@@ -1,7 +1,3 @@
-Baik, Faisal. Reponya isinya Laravel standar, jadi README lamanya cuma “About Laravel.” Kurang membantu siapa pun selain orang yang suka klik-klik. Ini README baru yang rapi, siap kamu tempel di repo itu. Sudah disusun supaya cocok dengan pola proyek Laravel modern (Vite, Tailwind, env, migrate/seed, artisan, dsb). Silakan copy-paste ke `README.md`.
-
----
-
 # E-Commerce Hirawr (Laravel)
 
 Proyek e-commerce berbasis Laravel untuk katalog produk, keranjang, checkout, dan manajemen pesanan. Dirancang agar mudah dijalankan secara lokal dan siap dikembangkan menjadi aplikasi produksi.
